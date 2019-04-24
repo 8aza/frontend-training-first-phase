@@ -1,0 +1,60 @@
+﻿:root {
+  --mysize:100px;
+}
+
+html, body{
+    height:600px;
+    width:600px;
+    position:relative;
+}
+
+#menu li {
+float:left;
+width:33.33%;
+}
+
+#menu {
+	height:5%;
+}
+
+#contentlayout {
+	height:95%;
+	width:100%;
+}
+
+#contentlayout li {
+	list-style:none;
+}
+
+#red {
+	position:relative;
+	left:var(--mysize);
+	top:var(--mysize);
+	height:var(--mysize);
+	width:var(--mysize);
+	background:#FF0000;
+}
+
+#yellow {
+	margin: auto;
+	height:var(--mysize);
+	width:var(--mysize);
+	background:#FFFF00;
+}
+
+#blue {
+	position:absolute;
+	right:var(--mysize);
+	bottom:var(--mysize);
+	height:var(--mysize);
+	width:var(--mysize);
+	background:#0000FF;
+}
+
+.mydivlayout {
+		height:100%;
+		width:33%;
+		float:left;
+		border:1px solid black;
+		display:flex;
+}
