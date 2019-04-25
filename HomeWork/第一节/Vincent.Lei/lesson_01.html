@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {
+        background-color: bisque;
+        border: none;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    /*.nav {*/
+    /*background: aqua;*/
+    /*color: aqua;*/
+    /*border: none;*/
+    /*padding: 0px;*/
+    /*margin: 0px;*/
+    /*overflow: hidden;*/
+    /*}*/
+
+    .nav ul {
+        text-align: center;
+        border: none;
+        margin-top: 100px;
+        list-style: none;
+        font-size: 0;
+        letter-spacing: -3px;
+    }
+
+    .nav ul li {
+        width: 300px;
+        height: 100px;
+        line-height: 100px;
+        display: inline-block;
+    }
+
+    .nav ul li p {
+        color: blueviolet;
+        font-size: 20px;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+        font-style: italic;
+    }
+
+    .nav ul li:nth-child(2n-1) {
+        background-color: aqua;
+    }
+
+    .nav ul li:nth-child(2n) {
+        background-color: chocolate;
+    }
+
+    .grid {
+        width: 80%;
+        height: 300px;
+        display: inline-block;
+        margin: 0px;
+        background-color: blue;
+    }
+
+    .grid .box {
+        position: relative;
+        width: 25%;
+        height: 300px;
+        float: left;
+        background-color: red;
+    }
+
+    .grid .box:nth-child(2n) {
+        background-color: blueviolet;
+    }
+
+    .grid .box p {
+        width: 33.33%;
+        height: 100px;
+        line-height: 100px;
+        font-size: 30px;
+        margin: 0;
+        padding: 0;
+        color: white;
+        text-align: center;
+        background-color: black;
+        font-style: oblique;
+    }
+
+    #p1 {
+        position: absolute;
+        left: 33.33%;
+        top: 33.33%;
+    }
+
+    #p2 {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    #p3 {
+        position: absolute;
+        left: 33.33%;
+        bottom: 0;
+    }
+
+    #p4 {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .div_bottom {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        width: 300px;
+        height: 300px;
+        text-align: center;
+        background: aqua;
+    }
+
+    .div_bottom p {
+        font-size: 80px;
+    }
+</style>
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 01</title>
+
+</head>
+<body>
+
+<div>
+    <h1>Lesson 01</h1>
+    <div class="nav">
+        <ul>
+            <li><p>MENU1</p></li>
+            <li><p>MENU2</p></li>
+            <li><p>MENU3</p></li>
+            <li><p>MENU4</p></li>
+        </ul>
+    </div>
+    <div align="center">
+        <div class="grid">
+            <div class="box" id="box_1">
+                <P id="p1">壹</P>
+            </div>
+            <div class="box" id="box_2">
+                <P id="p2">贰</P>
+            </div>
+            <div class="box" id="box_3">
+                <P id="p3">叁</P>
+            </div>
+            <div class="box" id="box_4">
+                <P id="p4">肆</P>
+            </div>
+        </div>
+    </div>
+
+    <div class="div_bottom"><p>@</p></div>
+</div>
+
+</body>
+</html>
