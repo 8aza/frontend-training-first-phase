@@ -1,0 +1,55 @@
+html, body {
+    margin:0;
+    padding:0;
+}
+
+.row{
+}
+
+#top {
+    height: 50px;
+}
+
+#center{
+    height: 500px;
+}
+
+#bottom{
+    height: 200px;
+}
+
+#tab1{
+    position: relative;
+    border: 1px solid #cbd2cc;
+    width: auto;
+    height: 600px;
+}
+
+#d1{
+    position: absolute;
+    background: #5bc0de;
+    left: 100px;
+    top: 100px;
+    width: 100px;
+    height: 100px;
+}
+
+#d2{
+    background: #5cb85c;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+
+#d3{
+    background: #36da89;
+    position: absolute;
+    right: 100px;
+    bottom: 100px;
+    width: 100px;
+    height: 100px;
+}
