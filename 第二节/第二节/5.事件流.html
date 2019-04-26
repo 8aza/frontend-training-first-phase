@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<button id="clickMe">Click Me</button>
+		
+		<script>
+		var button = document.getElementById('clickMe');
+
+		button.onclick = function() {
+		  console.log('1. You click Button');
+		};
+		document.body.onclick = function() {
+		  console.log('2. You click body');
+		};
+		document.onclick = function() {
+		  console.log('3. You click document');
+		};
+		window.onclick = function() {
+		  console.log('4. You click window');
+		};
+		</script>
+	</body>
+</html>

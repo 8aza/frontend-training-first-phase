@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<input value="OK">
+		
+		<div>
+			<p id="demo1">点击下面的按钮来设置按钮的类型属性。</p>
+			<button onclick="myFunction1()">点我</button>
+		</div>
+		
+		<div>
+			<h1 style="color:red">Hello World</h1>
+			<p id="demo2">点击下面的按钮删除上面的标题的样式属性</p>
+			<button onclick="myFunction2()">点我</button>
+		</div>
+		
+		<div>
+			读取 <a href="#" target="_blank">Attr 对象</a>.
+			<p id="demo3">单击按钮以显示上述链接的目标属性的值</p>
+			<button onclick="myFunction3()">点我</button>
+		</div>
+		
+		<script>
+		function myFunction1(){
+			document.getElementsByTagName("INPUT")[0].setAttribute("type","button"); 
+		};
+		function myFunction2(){
+			document.getElementsByTagName("H1")[0].removeAttribute("style"); 
+		};
+		function myFunction3(){
+			var a=document.getElementsByTagName("a")[0];
+			document.getElementById("demo3").innerHTML=a.getAttribute("target");
+		}
+		</script>
+	</body>
+</html>

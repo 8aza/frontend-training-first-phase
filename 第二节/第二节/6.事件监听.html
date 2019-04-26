@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<div onmousedown="mDown(this)" onmouseup="mUp(this)" style="background-color:green;color:#ffffff;width:90px;height:20px;padding:40px;font-size:12px;">请点击这里</div>
+		<div id="demo" style="margin-top:20px;background-color:green;width:120px;height:20px;padding:40px;color:#ffffff;">把鼠标移到上面</div>
+		<script>
+		function mDown(obj)
+		{
+			obj.style.backgroundColor="#1ec5e5";
+			obj.innerHTML="请释放鼠标按钮"
+		}
+		
+		function mUp(obj)
+		{
+			obj.style.backgroundColor="green";
+			obj.innerHTML="请按下鼠标按钮"
+		}
+		var demo = document.getElementById('demo')
+		demo.addEventListener('mouseover',function(){
+			demo.innerHTML="谢谢"
+		})
+		demo.addEventListener('mouseout',function(){
+			demo.innerHTML="把鼠标移到上面"
+		})
+		</script>
+	</body>
+</html>

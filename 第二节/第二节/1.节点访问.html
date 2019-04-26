@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<h1>从document对象获取结点:4种方式</h1>
+		<script type="text/javascript">
+		</script>
+		<input type="button" value="通过id获取" onclick="t1();" />
+		<input type="button" value="通过name属性获取" onclick="t2();" />
+		<input type="button" value="通过标签名获取" onclick="t3();" />
+		<input type="button" value="通过Class名获取" onclick="t4();" />
+		<br/>
+		<div id="div1">0000</div>
+		<form>
+			通过name获取：
+			<input type="text" name="name" /> <br/> 
+			通过标签名获取：
+			<input type="text"  /> <br/>
+			通过Class名获取：
+			<input type="text" class="test"/> <br/>
+		</form>
+		
+		
+		<script type="text/javascript">
+			function t1() {
+				//1.通过id获取
+				var oDiv1 = document.getElementById("div1");
+				alert(oDiv1.nodeName + "," + oDiv1.nodeType + "," + oDiv1.nodeValue);
+				var txtNode = oDiv1.childNodes[0];
+				alert(txtNode.nodeName + "," + txtNode.nodeType + "," + txtNode.nodeValue);
+				var oIdPro = oDiv1.attributes[0];
+				alert(oIdPro.nodeName + "," + oIdPro.nodeType + "," + oIdPro.nodeValue);
+			}
+
+			function t2() {
+				//2.通过name获取
+				var oInputName = document.getElementsByName("name")[0];
+				oInputName.value = "success!";
+			}
+
+			function t3() {
+				//3.通过标签名获取
+				var oInputName = document.getElementsByTagName("input")[5];
+				oInputName.value = "success!";
+			}
+			
+			function t4() {
+				//4.通过class名获取
+				var oInputName = document.getElementsByClassName("test")[0];
+				oInputName.value = "success!";
+			}
+		</script>
+	</body>
+
+</html>

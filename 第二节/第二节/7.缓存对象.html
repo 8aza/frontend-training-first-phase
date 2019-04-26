@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<body>
+		<p id="demo"></p>
+		<button onclick="f1()">获取localStorage</button>
+		<button onclick="f2()">获取sessionStorage</button>
+		<button onclick="f3()">删除sessionStorage缓存</button>
+		<button onclick="f4()">删除sessionStorage缓存</button>
+		<script>
+		localStorage.setItem('localStoreage_test','localStoreage');
+		sessionStorage.setItem('sessionStorage_test','sessionStorage');
+		
+		function f1(){
+			var a = localStorage.getItem('localStoreage_test');
+			document.getElementById('demo').innerText=a;
+		}
+		function f2(){
+			var a = sessionStorage.getItem('sessionStorage_test');
+			document.getElementById('demo').innerText=a;
+		}
+		function f3(){
+			sessionStorage.removeItem('sessionStorage_test');
+		}
+		function f4(){
+			localStorage.removeItem('localStoreage_test');
+		}
+		
+		</script>
+	</body>
+</html>
