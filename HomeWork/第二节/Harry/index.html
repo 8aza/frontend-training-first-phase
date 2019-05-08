@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>登录</title>
+
+	<style type="text/css">
+		html,body{
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			font-family: 'MicroYaHei';
+		}
+		.main-wrapper{
+			height: 100%;
+			background: rgb(30,87,153); /* Old browsers */
+			background: -moz-linear-gradient(top, rgba(30,87,153,1) 0%, rgba(41,137,216,1) 48%, rgba(125,185,232,1) 100%); /* FF3.6-15 */
+			background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 48%,rgba(125,185,232,1) 100%); /* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 48%,rgba(125,185,232,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+		}
+		.login-wrapper{
+			position: absolute;
+		    top: 50%;
+		    left: 50%;
+		    margin-top: -150px;
+		    margin-left: -300px;
+			width: 560px;
+		    height: 300px;
+		    border: 5px solid rgba(250, 250, 250, 0.8);
+		    border-radius: 8px;
+		    padding: 36px;
+		    box-shadow: 0 3px 8px #ccc;
+		    color: #eee;
+		}
+		.logo-wrapper{
+			padding: 10px 5px;
+			border-bottom: 4px solid rgba(6, 6, 6, 0.18);
+			font-size: 22px;
+    		text-align: center;
+		}
+		.form-wrapper{
+			position: relative;
+			padding: 40px;
+		}
+		.form-item{
+			position: relative;
+			padding: 10px 15px;
+		}
+		.form-label{
+			width: 80px;
+			display: inline-block;
+		    text-align: end;
+		    margin-right: 8px;
+		}
+		.form-input{
+			width: 240px;
+			height: 22px;
+			padding: 2px 4px;
+		    border-radius: 4px;
+		    background-color: transparent;
+		    border-width: 1px;
+		    border-color: rgba(238, 238, 238, 0.3);
+		    border-style: solid;
+		    color: #ddd;
+		    font-size: 14px;
+		}
+		#btnLogin{
+			position: absolute;
+		    right: 123px;
+		    width: 80px;
+		    height: 26px;
+		    line-height: 26px;
+		    padding: 2px;
+		    background-color: orange;
+		    text-align: center;
+		    border-radius: 4px;
+		    cursor: pointer;
+		}
+		#btnLogin:hover{
+            display: none;
+        }
+        #btnLogin:focus {
+            background-color:blue;
+        }
+
+        #btnLogin:active {
+            background-color:blue;
+        }
+		#btnRegister{
+			position: absolute;
+		    right: 233px;
+		    width: 80px;
+		    height: 26px;
+		    line-height: 26px;
+		    padding: 1.5px;
+		    text-align: center;
+		    border-radius: 4px;
+		    cursor: pointer;
+		    border: 1px solid #aaa;
+		}
+		#btnGroup{
+			margin-top: 40px;
+		}
+		#msgArea{
+			position: absolute;
+			right: 180px;
+    		margin-top: 10px;
+		}
+		.msgError{    
+			display: none;
+			color: red;
+    		font-size: 12px;
+		}
+	</style>
+
+  </head>
+  <body>
+    <div class="main-wrapper">
+		<div class="login-wrapper">
+			<div class="logo-wrapper">
+				<img src="">
+				<span>某公司系统平台</span>
+			</div>
+			<div class="form-wrapper">
+				<div id="username" class="form-item">
+					<label class="form-label">用户名</label>
+					<input id="iptUsername" type="email" name="" class="form-input">
+				</div>
+				<div id="password" class="form-item">
+					<label class="form-label">密码</label>
+					<input id="iptPassword" type="password" name="" class="form-input">
+				</div>
+				<div id="msgArea">
+					<span class="msgError" id="msg">用户名或者密码错误</span>
+				</div>
+				<div id="btnGroup" class="form-item">
+					<div id="btnLogin" onclick="doLogin()">登录</div>
+					<div id="btnRegister" onclick="doRegister()">注册</div>
+				</div>
+			</div>
+		</div>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+  	/*注册*/
+  	function doRegister(){
+  		let username = $('#iptUsername').value;
+  		let password = $('#iptPassword').value;
+  		let isEmail = checkAccount(username);
+  		let $msg = $('#msg');
+  		if(!isEmail){
+  			let msg  = '帐号必须为邮箱';
+  			$msg.innerHTML = msg;
+  			$msg.style.display = 'block';
+  		}else{
+  			$msg.style.display = 'none';
+  			//保存到缓存
+  			localStorage.setItem(username, password);
+  			alert('注册成功');
+  		}
+  	}
+  	/*登录*/
+  	function doLogin(){
+  		let username = $('#iptUsername').value;
+  		let password = $('#iptPassword').value;
+  		let $msg = $('#msg');
+  		let lcText = localStorage.getItem(username);
+  		if(lcText && lcText == password){
+  			$msg.style.display = 'none';
+  			alert('登录成功');
+  		}else{
+  			let msg  = '帐号或者密码不正确';
+  			$msg.innerHTML = msg;
+  			$msg.style.display = 'block';
+  		}
+  	}
+  	/*验证*/
+  	function checkAccount(account){
+  		var re = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/; 
+	    if (re.test(account)) {
+	      return true;
+	    } else {
+	      return false;
+	    }
+  	}
+
+  	function $(selector){
+  		return document.querySelector(selector);
+  	}
+  </script>
+</html>
