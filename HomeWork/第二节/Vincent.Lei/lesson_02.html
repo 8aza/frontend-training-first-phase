@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录注册</title>
+</head>
+
+<style>
+
+    #loginContent {
+        width: 500px;
+        height: 280px;
+        position: fixed;
+        top: 0;
+        padding: 20px;
+        border-radius: 20px;
+        margin: auto;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #CCCCCC;
+    }
+
+    .input_container_username {
+        position: relative;
+        padding: 0;
+        height: 50px;
+        margin: 0;
+    }
+
+    .input_container_password {
+        position: relative;
+        padding: 0;
+        height: 50px;
+        margin-top: 20px;
+    }
+
+    .span_title {
+        font-size: 20px;
+        width: 20%;
+        padding: 0;
+        position: absolute;
+        left: 0;
+        height: 50px;
+        line-height: 50px;
+        display: inline-block;
+    }
+
+    .input_blur {
+        outline-style: none;
+        width: 80%;
+        height: 50px;
+        position: absolute;
+        right: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 16px;
+        box-shadow: none;
+        text-shadow: none;
+        border-color: #CCCCCC;
+        border-width: 2px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .input_focus {
+        outline-style: none;
+        height: 50px;
+        width: 80%;
+        font-size: 16px;
+        position: absolute;
+        right: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-color: lightseagreen;
+        border-width: 2px;
+        box-shadow: none;
+        text-shadow: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    .button_login {
+        font-size: 20px;
+        height: 40px;
+        color: white;
+        width: 200px;
+        position: absolute;
+        left: 50px;
+        bottom: 50px;
+        box-shadow: none;
+        text-shadow: none;
+        border: none;
+        background-color: lightseagreen;
+    }
+
+    .button_register {
+        font-size: 20px;
+        height: 40px;
+        color: white;
+        width: 200px;
+        position: absolute;
+        right: 50px;
+        bottom: 50px;
+        box-shadow: none;
+        text-shadow: none;
+        border: none;
+        background-color: lightseagreen;
+    }
+
+    .span_error {
+        font-size: 16px;
+        color: red;
+        display: inline-block;
+        margin-top: 10px;
+        margin-left: 110px;
+    }
+
+</style>
+
+<body style="position: relative;">
+<div id="loginContent">
+    <div class="input_container_username">
+        <span class="span_title">用户名：</span>
+        <input type="text" id="input_username" class="input_blur" onfocus="inputOnFocus(this)"
+               onblur="inputOnBlur(this)"></br>
+    </div>
+    <div id="div_password" class="input_container_password">
+        <span class="span_title">密&nbsp;&nbsp;&nbsp;码：</span>
+        <input type="text" id="input_password" class="input_blur" onfocus="inputOnFocus(this)"
+               onblur="inputOnBlur(this)">
+    </div>
+
+    <button id="btn_login" class="button_login" onclick="login()">登录</button>
+    <button id="btn_register" class="button_register" onclick="register()">注册</button>
+</div>
+</body>
+
+
+<script>
+    function inputOnFocus(object) {
+        object.setAttribute("class", "input_focus");
+    }
+
+    function inputOnBlur(object) {
+        object.setAttribute("class", "input_blur");
+
+    }
+
+    var inputUserName = document.getElementById("input_username");
+    var inputPassword = document.getElementById("input_password");
+    var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$");
+
+    function login() {
+        var userName = inputUserName.value;
+        var password = inputPassword.value;
+
+        if (!checkEmail(userName)) {
+            showUserNameError(2);
+            return;
+        }
+        hideUserNameError();
+        var passwordErrorType = checkPasswordInputValue(password);
+        if (passwordErrorType !== 0) {
+            showPasswordError(passwordErrorType);
+            return;
+        }
+        hidePasswordError();
+        var localUserName = localStorage.getItem("userName");
+        var localPassword = localStorage.getItem("password");
+
+        if (userName !== localUserName) {
+            showUserNameError(1);
+            return;
+        }
+        if (password !== localPassword) {
+            showPasswordError(3);
+            return;
+        }
+        hideUserNameError();
+        hidePasswordError();
+        alert("登录成功！")
+    }
+
+    function register() {
+        var userName = inputUserName.value;
+        var password = inputPassword.value;
+        if (!checkEmail(userName)) {
+            showUserNameError(2);
+            return;
+        }
+        hideUserNameError();
+        var passwordErrorType = checkPasswordInputValue(password);
+        if (passwordErrorType !== 0) {
+            showPasswordError(passwordErrorType);
+            return;
+        }
+        localStorage.setItem("userName", userName);
+        localStorage.setItem("password", password);
+        hidePasswordError();
+        alert("注册成功！")
+    }
+
+    function showUserNameError(type) {
+        var spanNode = document.getElementById("userNameSpanId");
+        if (!spanNode) {
+            spanNode = document.createElement("SPAN");
+            spanNode.setAttribute("class", "span_error");
+            spanNode.setAttribute("id", "userNameSpanId");
+        }
+        if (type === 2)
+            spanNode.innerText = "用户名必须为邮箱格式";
+        else
+            spanNode.innerText = "用户名不正确";
+        spanNode.style.visibility = "visible";
+        // var textNode = document.createTextNode("用户名不正确");
+        // spanNode.appendChild(textNode);
+        var loginContent = document.getElementById("loginContent");
+        loginContent.insertBefore(spanNode, document.getElementById("div_password"));
+    }
+
+    function showPasswordError(passwordErrorType) {
+        var spanNode = document.getElementById("passwordSpanId");
+        if (!spanNode) {
+            spanNode = document.createElement("SPAN");
+            spanNode.setAttribute("class", "span_error");
+            spanNode.setAttribute("id", "passwordSpanId");
+        }
+
+        if (passwordErrorType === 1)
+            spanNode.innerText = "请输入密码";
+        else if (passwordErrorType === 2)
+            spanNode.innerText = "密码长度不小于6位";
+        else
+            spanNode.innerText = "密码不正确";
+        spanNode.style.visibility = "visible";
+        var loginContent = document.getElementById("loginContent");
+        loginContent.insertBefore(spanNode, document.getElementById("btn_login"));
+    }
+
+    function hideUserNameError() {
+        var spanNode = document.getElementById("userNameSpanId");
+        if (spanNode)
+            spanNode.style.visibility = "hidden";
+
+    }
+
+    function hidePasswordError() {
+        var spanNode = document.getElementById("passwordSpanId");
+        if (spanNode)
+            spanNode.style.visibility = "hidden";
+    }
+
+    function checkEmail(email) {
+        if (!email)
+            return false;
+        return reg.test(email);
+    }
+
+    function checkPasswordInputValue(password) {
+        if (!password || password === "")
+            return 1;
+        if (password.length < 6)
+            return 2;
+        return 0;
+    }
+
+</script>
+</html>
