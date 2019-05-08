@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    用户名：<input id="txtUserName" type="text" /><br />
+    <div id="errMsg-userName" style="color:red;font-size:12px;display:none;">*</div>
+    密码：<input id="txtPwd" type="password" /><br />
+    <div id="errMsg-pwd" style="color:red;font-size:12px;display:none;">*</div>
+    <input id="btnLogin" type="button" value="登录" />
+    <input id="btnRegister" type="button" value="注册" />
+
+
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var emailRegex = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+            var $txtUserName = document.getElementById("txtUserName");
+            var $txtPwd = document.getElementById("txtPwd");
+            var $errMsgUserName = document.getElementById("errMsg-userName");
+            var $errMsgPwd = document.getElementById("errMsg-pwd");
+            var $btnLogin = document.getElementById("btnLogin");
+            var $btnRegister = document.getElementById("btnRegister");
+
+            $btnRegister.onclick = function () {
+                var userName = $txtUserName.value;
+                if (!checkUserName(userName))
+                    return false;
+
+                $errMsgUserName.innerText = "";
+                $errMsgUserName.style.display = "none";
+
+                var pwd = $txtPwd.value;
+                if (!checkPwd(pwd)) {
+                    return false;
+                };
+
+                $errMsgPwd.innerText = "";
+                $errMsgPwd.style.display = "none";
+
+                localStorage.setItem("userName", userName);
+                localStorage.setItem("pwd", pwd);
+
+                alert("注册成功：" + localStorage.getItem("userName"));
+                $txtUserName.value = "";
+                $txtPwd.value = "";
+            };
+
+            $btnLogin.onclick = function () {
+                var userName = $txtUserName.value;
+                if (!checkUserName(userName))
+                    return false;
+
+                $errMsgUserName.innerText = "";
+                $errMsgUserName.style.display = "none";
+
+                var pwd = $txtPwd.value;
+                if (!checkPwd(pwd)) {
+                    return false;
+                };
+
+                $errMsgPwd.innerText = "";
+                $errMsgPwd.style.display = "none";
+
+                if (userName == localStorage.getItem("userName") && pwd == localStorage.getItem("pwd")) {
+                    alert("登录成功");
+                    $txtUserName.value = "";
+                    $txtPwd.value = "";
+                    return;
+                }
+
+                $errMsgPwd.innerText = "账号或密码错误";
+                $errMsgPwd.style.display = "block";
+            };
+
+            var checkUserName = function (userName) {
+                if (userName == "") {
+                    $errMsgUserName.innerText = "用户名必填";
+                    $errMsgUserName.style.display = "block";
+                    return false;
+                };
+                if (!emailRegex.test(userName)) {
+                    $errMsgUserName.innerText = "用户名只能为邮箱";
+                    $errMsgUserName.style.display = "block";
+                    return false;
+                }
+
+                return true;
+            }
+
+            var checkPwd = function (pwd) {
+                if (pwd == "") {
+                    $errMsgPwd.innerText = "密码必填";
+                    $errMsgPwd.style.display = "block";
+                    return false;
+                };
+
+                return true;
+            }
+        };
+
+    </script>
+</body>
+</html>
