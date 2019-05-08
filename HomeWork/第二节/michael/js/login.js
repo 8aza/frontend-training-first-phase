@@ -26,6 +26,26 @@ return res;
 } 
 
 function eventHandler(){
+	var loginForm = document.getElementById("login_form");
+  var divPwd = document.getElementById("pwd_form");
+  var divSubmit = document.getElementById("div_submit");
+  var divAccountTip = document.createElement("div");
+  var labelAccountTip = document.createElement("label");
+  var divLoginTip = document.createElement("div");
+  var labelLoginTip = document.createElement("label");
+
+  divAccountTip.setAttribute("class", "form-group");
+  labelAccountTip.setAttribute("class", "label_tip");
+  labelAccountTip.setAttribute("id", "account_tip");
+  divAccountTip.appendChild(labelAccountTip);
+  loginForm.insertBefore(divAccountTip, divPwd);
+  
+  divLoginTip.setAttribute("class", "form-group");
+  labelLoginTip.setAttribute("class", "label_tip");
+  labelLoginTip.setAttribute("id", "login_tip");
+  divLoginTip.appendChild(labelLoginTip);
+  loginForm.insertBefore(divLoginTip, divSubmit);
+  
 	account.addEventListener('change', function(data){
 			if (!checkEmail(data.target.value))
 			{
